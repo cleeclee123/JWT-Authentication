@@ -1,5 +1,6 @@
 require("dotenv").config();
 
+const { request } = require("express");
 const express = require("express");
 const app = express();
 const jwtoken = require("jsonwebtoken");
@@ -25,7 +26,12 @@ app.post("/token", (request, response)=> {
         const accessToken = generateAccessToken({ name: user.name });
         response.json({ accessToken: accessToken });
     })
-})
+});
+
+app.delete("/logout", (request, response) => {
+    refreshTokens = refreshTokens.filter(token => token !== request.body.token);
+    response.sendStatus(204);
+});
 
 function generateAccessToken(user) {
     return jwtoken.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15s' });
