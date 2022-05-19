@@ -33,6 +33,20 @@ app.delete("/logout", (request, response) => {
     response.sendStatus(204);
 });
 
+app.post("/login", (request, response) => {
+    // auth user
+    const username = request.body.username;
+    const user = { name: username };
+
+    const accessToken = generateAccessToken(user);
+    const refreshToken = jwtoken.sign(user, process.env.REFRESH_TOKEN_SECRET);
+    refreshTokens.push(refreshToken);
+
+    response.json({ accessToken: accessToken, refreshToken: refreshToken });
+});
+
 function generateAccessToken(user) {
     return jwtoken.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15s' });
 }
+
+app.listen(4000)
