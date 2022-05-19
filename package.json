@@ -1,0 +1,29 @@
+{
+  "name": "jwt-authentication-",
+  "version": "1.0.0",
+  "description": "JSON Web Token Authentication with Node.js",
+  "main": "index.js",
+  "scripts": {
+    "devStart": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cleeclee123/JWT-Authentication-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cleeclee123/JWT-Authentication-/issues"
+  },
+  "homepage": "https://github.com/cleeclee123/JWT-Authentication-#readme",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
