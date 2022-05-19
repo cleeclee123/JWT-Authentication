@@ -46,7 +46,7 @@ app.post("/login", (request, response) => {
 });
 
 function generateAccessToken(user) {
-    return jwtoken.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15s' });
+    return jwtoken.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30s' });
 }
 
 app.listen(4000)
