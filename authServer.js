@@ -13,14 +13,17 @@ app.post("/token", (request, response)=> {
     const refreshToken = request.body.token;
 
     if (refreshToken == null) {
+        response.json({"message" : "Bad Token"});
         return response.sendStatus(401);
     }
     if (!refreshTokens.includes(refreshToken)) {
+        response.json({"message" : "Bad Token"});
         return response.sendStatus(403);
     }
 
     jwtoken.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (error, user) => {
         if (error) {
+            response.json({"message" : "Bad Token"});
             return response.sendStatus(403);
         }
         const accessToken = generateAccessToken({ name: user.name });
@@ -31,6 +34,7 @@ app.post("/token", (request, response)=> {
 app.delete("/logout", (request, response) => {
     refreshTokens = refreshTokens.filter(token => token !== request.body.token);
     response.sendStatus(204);
+    response.json({"message" : "Logged out"});
 });
 
 app.post("/login", (request, response) => {
